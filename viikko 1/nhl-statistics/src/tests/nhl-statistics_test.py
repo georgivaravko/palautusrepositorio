@@ -1,5 +1,5 @@
 import unittest
-from statistics_service import StatisticsService
+from statistics_service import StatisticsService, SortBy
 from player import Player
 
 class PlayerReaderStub:
@@ -35,9 +35,18 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(players[0].name, "Lemieux")
 
     def test_jarjestaa_pisteiden_mukaan(self):
-        sorted_by_points = self.stats.top(1)
-        print(sorted_by_points)
+        sorted_by_points = self.stats.top(1, SortBy.POINTS)
 
         self.assertEqual(sorted_by_points[0].name, "Gretzky")
 
 # main funktio on jätetty testaamatta, koska se vaatisi nettiyhteyden
+
+    def test_jarjestaa_maalien_mukaan(self):
+        sorted_by_goals = self.stats.top(1, SortBy.GOALS)
+        
+        self.assertEqual(sorted_by_goals[0].name, "Lemieux")
+
+    def test_jarjestaa_assistien_mukaan(self):
+        sorted_by_assists = self.stats.top(1, SortBy.ASSISTS)
+        
+        self.assertEqual(sorted_by_assists[0].name, "Gretzky")
