@@ -1,2 +1,2 @@
 # palautusrepositorio
-ohtu tehtävät 14-17
+https://github.com/georgivaravko/ohtuvarasto.git
