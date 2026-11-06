@@ -7,13 +7,14 @@ def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2024-25/players"
     reader = PlayerReader(url)
     stats = PlayerStats(reader)
-    players = stats.top_scorers_by_nationality("FIN")
+    team = input("Team abbreviation (e.g. EDM): ").strip().upper()
+    players = stats.top_scorers_by_team(team)
     create_table(players)
 
 def create_table(players):
-    table = Table(title="Top Scorers by Nationality")
-    table.add_column("Released", justify="right", style="cyan", no_wrap=True)
-    table.add_column("teams", style="magenta")
+    table = Table(title="Top Scorers by Team")
+    table.add_column("Player", justify="right", style="cyan", no_wrap=True)
+    table.add_column("Team", style="magenta")
     table.add_column("goals", justify="right", style="green")
     table.add_column("assists", justify="right", style="green")
     table.add_column("points", justify="right", style="green")
