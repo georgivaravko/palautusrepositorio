@@ -17,6 +17,13 @@ Login With Incorrect Password
     Click  button >> text=Login
     Login Should Fail With Message  Invalid username or password
 
+Login With Nonexistent Username
+    Reset Application
+    Set Username  nonexistent
+    Set Password  nonexistent
+    Click  button >> text=Login
+    Login Should Fail With Message  Invalid username or password
+
 *** Keywords ***
 Login Should Succeed
     Main Page Should Be Open
@@ -26,15 +33,11 @@ Login Should Fail With Message
     Login Page Should Be Open
     Get Text  body  *=  ${message}
 
-Set Username
-    [Arguments]  ${username}
-    Fill Text  id=username  ${username}
-
-Set Password
-    [Arguments]  ${password}
-    Fill Secret  id=password  $password
-
 Reset Application Create User And Go To Login Page
     Reset Application
     Create User  kalle  kalle123
     Go To Login Page
+
+Set Password
+    [Arguments]  ${password}
+    Fill Secret  id=password  $password
